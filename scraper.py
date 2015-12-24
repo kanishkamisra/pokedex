@@ -41,8 +41,33 @@ data_list = []
 for i in range(0,len(elements)-1):
 	data_list.append({column: entry[i] for (column, entry) in col})
 
+# Clean!
+def brackets(word):
+	list = [x for x in word]
+	for i in range(1, len(list)):
+		if list[i].isupper():
+			list[i] = ' ' + list[i]
+	new_list = ''.join(list).split(' ')
+	if len(new_list) > 1:
+		new_list.insert(1,'(')
+		new_list.append(')')
+	return ' '.join(new_list)
+
+def breaks(word):
+	list = [x for x in word]
+	for i in range(1, len(list)):
+		if list[i].isupper():
+			list[i] = ' ' + list[i]
+	new_list = ''.join(list).split(' ')
+	return new_list
+
+for data in data_list:
+	data['Name'] = brackets(data['Name'])
+ 	data['Type'] = breaks(data['Type'])
+
 # Dump to json
 with open('pokemondata.json', 'wb') as jsonfile:
 	json.dump(data_list, jsonfile)
+	print 'Data saved to json!'
 
 

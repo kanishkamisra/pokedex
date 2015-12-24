@@ -1,2 +1,2 @@
 # pokedex
-Python package for pokemon data!
+Python package for pokemon data! - Under construction
